@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assistant — your own AI assistant, on your phone and your server</title>
+  <meta name="description" content="A personal assistant you run yourself. It reads your inbox, keeps your calendar, drafts replies you approve, keeps your to-do list and remembers what matters. Built on Claude, open source, self-hosted." />
+  <meta name="color-scheme" content="light dark" />
+  <meta property="og:title" content="Assistant — your own AI assistant" />
+  <meta property="og:description" content="Phone app + Telegram + WhatsApp, one assistant, your server. Email, calendar, to-dos, reminders and memory." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#features">Skip to content</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Assistant home">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.4 9.4 13.8 11.2 12 15.8 10.2 11.2 5.6 9.4l4.6-1.8L12 3z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2z"/></svg>
+        </span>
+        <span>Assistant</span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#setup">Setup</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="btn btn-primary" href="https://github.com/uncemo/doruk-agent#setup">Get started</a>
+        <button class="icon-btn menu-btn" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#setup">Setup</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/uncemo/doruk-agent">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============================================================ hero -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="dot"></span> Open source · Self-hosted · Built on Claude</p>
+          <h1>Your own assistant.<br/>On your phone, on <em>your</em> server.</h1>
+          <p class="lede">
+            It reads your inbox, keeps your calendar straight, writes replies you approve with one tap,
+            keeps your to-do list and remembers what matters. You talk to it like a person, by text or voice.
+            It runs on a server you control, with your keys and your data.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" href="https://github.com/uncemo/doruk-agent#setup">
+              Set it up in 30 minutes
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
+          </div>
+          <ul class="facts" aria-label="Key facts">
+            <li><strong>iPhone &amp; Android</strong> app</li>
+            <li><strong>Telegram &amp; WhatsApp</strong> optional</li>
+            <li><strong>Gmail &amp; Calendar</strong> connected</li>
+            <li><strong>£3–10</strong> a month in API use</li>
+          </ul>
+        </div>
+
+        <div class="hero-phone reveal" aria-hidden="true">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="app-header">
+              <span class="app-logo"></span>
+              <div>
+                <div class="app-title">Assistant</div>
+                <div class="app-status"><i></i> Online</div>
+              </div>
+            </div>
+            <div class="chat" id="demo-chat">
+              <div class="day">Today</div>
+              <div class="msg me">What's on today?</div>
+              <div class="msg them">Three things. Standup at 10, dentist at 14:30 in Angel, and padel at 21:30. The lab report is due tomorrow, it's on your list.</div>
+              <div class="msg me">Any emails I should answer?</div>
+              <div class="msg them">One. Your landlord asked if Thursday 6pm works for the boiler check. Want me to say yes?</div>
+              <div class="msg me">Yes, and remind me 30 min before</div>
+              <div class="card">
+                <div class="card-top"><span class="card-ic"></span><div><div class="muted">Draft to</div><div class="strong">james@homelet.co.uk</div></div></div>
+                <div class="card-subj">Re: Boiler check</div>
+                <div class="card-body">Hi James, Thursday at 6pm works for me. I'll be home. Thanks, Doruk</div>
+                <div class="card-actions"><span class="b primary">Send</span><span class="b">Keep</span><span class="b danger">Delete</span></div>
+              </div>
+              <div class="msg them">Reminder set for Thursday 17:30.</div>
+              <div class="typing"><i></i><i></i><i></i></div>
+            </div>
+            <div class="composer">
+              <span class="c-ic"></span><span class="c-ic"></span>
+              <span class="c-input">Message</span>
+              <span class="c-mic"></span>
+            </div>
+            <div class="tabs">
+              <span class="tab on">Chat</span><span class="tab">To-do</span><span class="tab">Memory</span><span class="tab">Settings</span>
+            </div>
+          </div>
+          <div class="glow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ strip -->
+    <section class="strip" aria-label="Works with">
+      <div class="wrap strip-inner">
+        <span>Works with</span>
+        <ul>
+          <li>Gmail</li><li>Google Calendar</li><li>Claude API</li><li>Railway</li><li>Expo</li><li>Telegram</li><li>WhatsApp Cloud API</li><li>OpenAI Whisper</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ features -->
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">What it does</p>
+          <h2>An assistant that does things, not one that explains how you could.</h2>
+          <p>Every feature is a tool the model can call on your behalf. You stay in the loop where it matters, like sending email, and out of the loop where it doesn't.</p>
+        </div>
+        <div class="grid features">
+          <article class="feature reveal">
+            <span class="f-ic" style="--c:#3b6cf6"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.7 7.1L4 20l1-5A8 8 0 1 1 21 12z"/></svg></span>
+            <h3>Chat that acts</h3>
+            <p>"Move gym to 8", "what's on this week", "book 30 minutes with Ayşe on Friday". It checks the calendar first, then does it, then tells you in one line.</p>
+          </article>
+          <article class="feature reveal">
+            <span class="f-ic" style="--c:#e5484d"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></span>
+            <h3>Email drafts you approve</h3>
+            <p>It reads the thread and writes a reply like a real person. The draft lands in the chat with <b>Send</b>, <b>Keep</b> and <b>Delete</b>. Nothing leaves without your tap.</p>
+          </article>
+          <article class="feature reveal">
+            <span class="f-ic" style="--c:#2fb67c"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+            <h3>Calendar that checks itself</h3>
+            <p>Reads, adds, moves and deletes events. Keeps the duration when you only move the start. Never books over something else without saying so.</p>
+          </article>
+          <article class="feature reveal">
+            <span class="f-ic" style="--c:#8b5cf6"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+            <h3>A to-do list you both keep</h3>
+            <p>"I need to renew my Oyster card" goes on the list. "Done with the report" ticks it off. You add and tick things in the To-do tab and it updates live. It offers to add deadlines it spots in email.</p>
+          </article>
+          <article class="feature reveal">
+            <span class="f-ic" style="--c:#f0a429"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M5 3L2 6M19 3l3 3"/></svg></span>
+            <h3>Reminders and a morning brief</h3>
+            <p>"Remind me at 6 to call mum." Reminders survive restarts. Every morning at 7:45: your schedule, emails to deal with, and what's due this week.</p>
+          </article>
+          <article class="feature reveal">
+            <span class="f-ic" style="--c:#06b6d4"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.6 4.6 1.8-4.6 1.8L12 15.8l-1.8-4.6L5.6 9.4l4.6-1.8z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+            <h3>Memory you can see and edit</h3>
+            <p>Lasting facts you mention ("I train Mon, Wed, Fri", "Kerem is my flatmate") are saved and used in every chat. The Memory tab shows all of them. Remove any with one tap.</p>
+          </article>
+          <article class="feature reveal">
+            <span class="f-ic" style="--c:#ec4899"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+            <h3>Voice notes and photos</h3>
+            <p>Hold the mic and talk, in English or Turkish. It shows what it heard, then acts. Send a screenshot of a timetable or a poster and it pulls out the dates.</p>
+          </article>
+          <article class="feature reveal">
+            <span class="f-ic" style="--c:#64748b"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <h3>Inbox watch</h3>
+            <p>Every 20 minutes it looks at new mail with a cheap, fast model and pings you only when something matters: a real person, an interview, a deadline. Newsletters stay quiet.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ how -->
+    <section class="section alt" id="how">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">How it works</p>
+          <h2>Three parts. You own all of them.</h2>
+          <p>The phone app, Telegram and WhatsApp are just doors into one assistant. Every door shares the same memory, the same to-do list and the same conversation.</p>
+        </div>
+        <ol class="flow reveal">
+          <li>
+            <div class="flow-num">1</div>
+            <h3>You talk</h3>
+            <p>From the app, Telegram or WhatsApp. Text, a voice note or a photo. Commands like <code>/brief</code> and <code>/todo</code> work everywhere.</p>
+            <div class="flow-tags"><span>App</span><span>Telegram</span><span>WhatsApp</span></div>
+          </li>
+          <li>
+            <div class="flow-num">2</div>
+            <h3>Your server thinks</h3>
+            <p>A small Python service runs Claude with a set of tools: calendar, Gmail, to-dos, reminders, memory, web search. Quick questions go to Sonnet, careful writing goes to Opus.</p>
+            <div class="flow-tags"><span>Python</span><span>Claude</span><span>SQLite</span></div>
+          </li>
+          <li>
+            <div class="flow-num">3</div>
+            <h3>Your accounts act</h3>
+            <p>Changes land in your Google Calendar and Gmail drafts. The reply comes back over a live connection to the app, or as a notification when it's closed.</p>
+            <div class="flow-tags"><span>Gmail</span><span>Calendar</span><span>Push</span></div>
+          </li>
+        </ol>
+
+        <div class="split reveal">
+          <div class="split-copy">
+            <p class="kicker">Live, not polling</p>
+            <h3>Replies arrive the moment they're ready.</h3>
+            <p>The app keeps a WebSocket open to your server. You see a typing indicator for exactly as long as the assistant is working, replies stream in as they land, and the To-do tab updates the second the assistant changes the list. When the phone has been asleep, the app notices a stale connection and reconnects on its own.</p>
+            <ul class="checks">
+              <li>Typing indicator driven by the server, not a timer</li>
+              <li>Messages carry an id, so nothing doubles or goes missing</li>
+              <li>History on the server: open the app on another device and it's all there</li>
+              <li>Push notifications when the app is closed</li>
+            </ul>
+          </div>
+          <div class="split-visual">
+            <div class="mini-phone">
+              <div class="mini-head"><b>To-do</b></div>
+              <div class="mini-sec danger">Overdue</div>
+              <div class="mini-row"><i></i><div><span>Lab report</span><small class="danger">Yesterday</small></div></div>
+              <div class="mini-sec">Today</div>
+              <div class="mini-row"><i></i><div><span>Renew Oyster card</span><small>Today</small></div></div>
+              <div class="mini-row done"><i class="on"></i><div><span>Email landlord about boiler</span></div></div>
+              <div class="mini-sec">This week</div>
+              <div class="mini-row"><i></i><div><span>Book dentist follow-up</span><small>Thursday</small></div></div>
+              <div class="mini-row"><i></i><div><span>Pay council tax</span><small>Friday</small></div></div>
+              <div class="mini-add"><span>Add a to-do</span><b>+</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ privacy -->
+    <section class="section" id="privacy">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">Privacy and control</p>
+          <h2>Self-hosted means exactly that.</h2>
+          <p>There is no company in the middle. Your messages, memories and to-dos sit in a small database on a server you rent for about $5 a month. The only things that leave it are the API calls you'd expect.</p>
+        </div>
+        <div class="grid cards">
+          <div class="pcard reveal">
+            <h3>Your keys, your bills</h3>
+            <p>You bring your own Claude API key and Google credentials. Usage shows up on your own account, with no markup and no middleman.</p>
+          </div>
+          <div class="pcard reveal">
+            <h3>Nothing is sent without you</h3>
+            <p>Email is draft-only by design. Every draft needs a tap on <b>Send</b>. Calendar changes are confirmed in one line so you can undo them.</p>
+          </div>
+          <div class="pcard reveal">
+            <h3>One owner</h3>
+            <p>It only answers you. Messages from anyone else on Telegram or WhatsApp are ignored. The app authenticates with a long random token you generate.</p>
+          </div>
+          <div class="pcard reveal">
+            <h3>Memory you can audit</h3>
+            <p>Everything it remembers is listed in the Memory tab. Delete a fact and it's gone from every future conversation.</p>
+          </div>
+          <div class="pcard reveal">
+            <h3>Open source</h3>
+            <p>Around two thousand lines of readable Python and TypeScript. You can read every tool the model is allowed to use and change any of them.</p>
+          </div>
+          <div class="pcard reveal">
+            <h3>Cheap to run</h3>
+            <p>Prompt caching keeps multi-step requests cheap. Expect £3 to £10 a month in API use for normal personal traffic, plus hosting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ screens -->
+    <section class="section alt" id="screens">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">The app</p>
+          <h2>Four tabs. Nothing you don't need.</h2>
+          <p>Built with Expo for iPhone and Android. Light and dark, haptics, hold-to-talk, and a draft card that remembers what you did with it.</p>
+        </div>
+        <div class="screens reveal">
+          <figure>
+            <div class="mini-phone">
+              <div class="mini-head"><b>Assistant</b><small><i></i> Online</small></div>
+              <div class="mini-chat">
+                <div class="m me">Add math hw due tmr</div>
+                <div class="m them">Added: Math homework, due Sun.</div>
+                <div class="m me">hw done</div>
+                <div class="m them">Done.</div>
+                <div class="m me">Remind me to call the bank at 3</div>
+                <div class="m them">Reminder set for 15:00 today.</div>
+              </div>
+              <div class="mini-add"><span>Message</span><b class="mic"></b></div>
+            </div>
+            <figcaption><b>Chat</b> One-line confirmations. Day separators, grouped bubbles, timestamps on the last message of a run.</figcaption>
+          </figure>
+          <figure>
+            <div class="mini-phone">
+              <div class="mini-head"><b>Memory</b></div>
+              <div class="mini-sec">Reminders</div>
+              <div class="mini-row"><i class="bell"></i><div><span>Call the bank</span><small>Today · 15:00</small></div></div>
+              <div class="mini-sec">What it remembers</div>
+              <div class="mini-row plain"><div><span>Trains Mon, Wed and Fri at 7am</span></div><em></em></div>
+              <div class="mini-row plain"><div><span>Kerem is his flatmate</span></div><em></em></div>
+              <div class="mini-row plain"><div><span>Prefers short replies, no bullet points</span></div><em></em></div>
+              <div class="mini-row plain"><div><span>Dentist is in Angel</span></div><em></em></div>
+            </div>
+            <figcaption><b>Memory</b> Every saved fact and every pending reminder, with a trash icon next to each.</figcaption>
+          </figure>
+          <figure>
+            <div class="mini-phone">
+              <div class="mini-head"><b>Settings</b></div>
+              <div class="mini-sec">Server</div>
+              <div class="mini-field"><small>Server URL</small><span>https://assistant.up.railway.app</span></div>
+              <div class="mini-field"><small>App token</small><span>••••••••••••••••••••••</span></div>
+              <div class="mini-btn">Save and test</div>
+              <div class="mini-ok">Connected. Channels on the server: app, telegram.</div>
+              <div class="mini-sec">Notifications</div>
+              <div class="mini-field"><span>Notifications are on for this phone.</span></div>
+            </div>
+            <figcaption><b>Settings</b> Two fields and a test button. That's the whole onboarding.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ setup -->
+    <section class="section" id="setup">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">Setup</p>
+          <h2>About half an hour, once.</h2>
+          <p>The README walks through each step with screenshots. Here's the shape of it.</p>
+        </div>
+        <div class="setup reveal">
+          <ol class="steps">
+            <li><span class="time">3 min</span><h3>Claude API key</h3><p>Create a key at console.anthropic.com and add a few pounds of credit.</p></li>
+            <li><span class="time">15 min</span><h3>Gmail and Calendar access</h3><p>Make a Google Cloud project, enable the two APIs, run the one-off sign-in script. It stores a refresh token for the server.</p></li>
+            <li><span class="time">10 min</span><h3>Deploy</h3><p>Click "Deploy from GitHub" on Railway, paste your variables, attach a small volume for the database. Done.</p></li>
+            <li><span class="time">2 min</span><h3>App token</h3><p>Generate a long random token, set it as <code>APP_TOKEN</code>, and put the same value in the app's Settings.</p></li>
+            <li><span class="time">optional</span><h3>Telegram or WhatsApp</h3><p>Add a bot token for Telegram, or connect a WhatsApp Business number. Both share the same assistant.</p></li>
+          </ol>
+          <div class="code" aria-label="Example environment variables">
+            <div class="code-bar"><span></span><span></span><span></span><b>.env</b></div>
+<pre><code><span class="c"># the brain</span>
+ANTHROPIC_API_KEY=sk-ant-…
+SONNET_MODEL=claude-sonnet-5-5
+OPUS_MODEL=claude-opus-5-5
+ROUTING=auto
+
+<span class="c"># your Google account (from auth_google.py)</span>
+GOOGLE_TOKEN_JSON={"refresh_token": "…"}
+
+<span class="c"># the phone app</span>
+APP_TOKEN=a-long-random-secret-at-least-20-chars
+
+<span class="c"># optional</span>
+TELEGRAM_BOT_TOKEN=…
+TRANSCRIBE_API_KEY=sk-…      <span class="c"># voice notes</span>
+TIMEZONE=Europe/London
+BRIEF_TIME=07:45</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ models -->
+    <section class="section alt" id="models">
+      <div class="wrap">
+        <div class="split reveal">
+          <div class="split-copy">
+            <p class="kicker">Under the hood</p>
+            <h3>The right model for each message.</h3>
+            <p>Quick lookups and small edits go to Sonnet. Drafting, planning, advice, long messages and photos route to Opus. The inbox watch uses Haiku, which costs almost nothing. The system prompt and tool list are cached across calls, so a request that takes four tool calls costs barely more than one.</p>
+            <ul class="checks">
+              <li>Sonnet and Opus routing, or pin one model</li>
+              <li>Prompt caching on the stable part of the prompt</li>
+              <li>Turns queue one at a time, so nothing races</li>
+              <li>Tool failures are reported back to the model, which tells you in one line</li>
+            </ul>
+          </div>
+          <div class="split-visual">
+            <div class="stats">
+              <div class="stat"><b>1–3p</b><span>per message on Sonnet</span></div>
+              <div class="stat"><b>~2×</b><span>when it routes to Opus</span></div>
+              <div class="stat"><b>0.3p</b><span>per minute of voice notes</span></div>
+              <div class="stat"><b>$5</b><span>a month for hosting</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ faq -->
+    <section class="section" id="faq">
+      <div class="wrap narrow">
+        <div class="section-head reveal">
+          <p class="kicker">FAQ</p>
+          <h2>Questions people ask first.</h2>
+        </div>
+        <div class="faq reveal">
+          <details open>
+            <summary>Is this a product I sign up for?</summary>
+            <p>No. It's a repository you deploy. There's no account, no subscription and no server of ours. You run it, you own it.</p>
+          </details>
+          <details>
+            <summary>Can it send email on its own?</summary>
+            <p>No, and that's deliberate. It can read and search Gmail and write drafts. Every draft comes to you with Send, Keep and Delete. Sending always needs your tap.</p>
+          </details>
+          <details>
+            <summary>Do I need to use the app? I like Telegram.</summary>
+            <p>Use whichever you like, or several. The app, Telegram and WhatsApp are channels into the same assistant and the same memory. Proactive messages like reminders go to the channel you used last.</p>
+          </details>
+          <details>
+            <summary>What does it cost to run?</summary>
+            <p>Roughly £3 to £10 a month in API use for normal personal traffic, plus about $5 for hosting on Railway. Voice notes add about 0.3p a minute with OpenAI, or nothing on Groq's free tier.</p>
+          </details>
+          <details>
+            <summary>How do notifications work when the app is closed?</summary>
+            <p>Through Expo's push service. It needs a development build of the app rather than Expo Go. Android builds are free. iPhone needs an Apple Developer account.</p>
+          </details>
+          <details>
+            <summary>Can other people use my instance?</summary>
+            <p>Not yet. It is built for one owner and ignores everyone else. The code is structured so that accounts can be added later: auth is one function, and messages are already keyed by chat.</p>
+          </details>
+          <details>
+            <summary>Which languages does it understand?</summary>
+            <p>Anything Claude does. Voice notes are transcribed with Whisper, which handles English and Turkish well, among many others.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ final cta -->
+    <section class="section cta-section">
+      <div class="wrap reveal">
+        <div class="cta-box">
+          <h2>Give yourself an assistant this weekend.</h2>
+          <p>Clone it, add your keys, deploy, open the app. The README has every step.</p>
+          <div class="cta-row">
+            <a class="btn btn-light btn-lg" href="https://github.com/uncemo/doruk-agent">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C19.3 5 20.3 5.3 20.3 5.3c.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+              View on GitHub
+            </a>
+            <a class="btn btn-outline-light btn-lg" href="https://github.com/uncemo/doruk-agent#setup">Read the setup guide</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="brand small">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.4 9.4 13.8 11.2 12 15.8 10.2 11.2 5.6 9.4l4.6-1.8L12 3z"/></svg>
+        </span>
+        <span>Assistant</span>
+      </div>
+      <p>A personal assistant you run yourself. Not affiliated with Anthropic, Google, Meta or Telegram.</p>
+      <nav aria-label="Footer">
+        <a href="https://github.com/uncemo/doruk-agent">GitHub</a>
+        <a href="https://github.com/uncemo/doruk-agent#readme">README</a>
+        <a href="#top">Back to top</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
