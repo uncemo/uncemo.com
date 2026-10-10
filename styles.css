@@ -364,3 +364,26 @@ h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), va
   .hero-phone { order: 2; margin-top: 12px; }
   .phone { width: min(300px, 86vw); }
 }
+
+/* ------------------------------------------------------------------ waitlist form */
+.join { display: flex; gap: 8px; max-width: 460px; margin-bottom: 14px; }
+.join input {
+  flex: 1; min-width: 0; height: 50px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--card); color: var(--text); font: inherit; font-size: 1rem; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.join input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+.join input::placeholder { color: var(--faint); }
+.join .btn { height: 50px; }
+.join .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.join-note { color: var(--muted); font-size: 0.9rem; min-height: 1.4em; margin-bottom: 18px; }
+.join-note.ok { color: var(--success); font-weight: 600; }
+.join-note.err { color: var(--danger); }
+.cta-box .join { margin: 0 auto 10px; }
+.cta-box .join input { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.35); color: #fff; }
+.cta-box .join input::placeholder { color: rgba(255, 255, 255, 0.7); }
+.cta-box .join-note { color: rgba(255, 255, 255, 0.85); }
+.cta-box .join-note.ok { color: #fff; }
+.badges { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; color: var(--muted); font-size: 0.9rem; }
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: 0.85rem; }
+.badge svg { width: 14px; height: 14px; }
+@media (max-width: 520px) { .join { flex-direction: column; } .join .btn { justify-content: center; } }

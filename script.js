@@ -1,6 +1,16 @@
-// Small, dependency-free behaviour: theme toggle, mobile nav, scroll reveal, and the hero chat loop.
+// Product name: change it here and the whole page updates (title, headings, footer).
+const NAME = "Assistant";
+
+// Small, dependency-free behaviour: name fill, theme toggle, mobile nav, scroll reveal, waitlist
+// forms, and the hero chat loop.
 (function () {
   const root = document.documentElement;
+
+  // ---- product name ----------------------------------------------------
+  document.querySelectorAll("[data-name]").forEach((el) => (el.textContent = NAME));
+  document.title = document.title.replace(/\{name\}/g, NAME);
+  const og = document.querySelector('meta[property="og:title"]');
+  if (og) og.content = og.content.replace(/\{name\}/g, NAME);
 
   // ---- theme ------------------------------------------------------------
   const themeBtn = document.getElementById("theme");
@@ -51,6 +61,52 @@
     );
     items.forEach((el) => io.observe(el));
   }
+
+  // ---- waitlist forms ---------------------------------------------------
+  const api = (root.dataset.api || "").replace(/\/+$/, "");
+  document.querySelectorAll("form.join").forEach((form) => {
+    const input = form.querySelector('input[type="email"]');
+    const note = form.parentElement.querySelector(".join-note");
+    const btn = form.querySelector("button");
+    const say = (text, cls) => {
+      note.textContent = text;
+      note.className = "join-note" + (cls ? " " + cls : "");
+    };
+    form.addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      const email = input.value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) {
+        say("That doesn't look like an email address.", "err");
+        input.focus();
+        return;
+      }
+      if (!api) {
+        say("Thanks! You're on the list.", "ok"); // no server configured: demo mode
+        form.reset();
+        return;
+      }
+      btn.disabled = true;
+      say("Adding you…");
+      try {
+        const r = await fetch(api + "/waitlist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, source: location.hostname || "site", website: form.querySelector(".hp")?.value || "" }),
+        });
+        const d = await r.json().catch(() => ({}));
+        if (r.ok) {
+          say(d.already ? "You're already on the list. We'll be in touch." : "You're in. We'll email you when it's your turn.", "ok");
+          form.reset();
+        } else {
+          say(d.error || "Something went wrong. Try again in a minute.", "err");
+        }
+      } catch {
+        say("Couldn't reach the server. Try again in a minute.", "err");
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
 
   // ---- hero chat: replay the conversation so the phone feels alive -----
   const chat = document.getElementById("demo-chat");
