@@ -1,5 +1,5 @@
 // Product name: change it here and the whole page updates (title, headings, footer).
-const NAME = "Assistant";
+const NAME = "Uncemo";
 
 // Small, dependency-free behaviour: name fill, theme toggle, mobile nav, scroll reveal, waitlist
 // forms, and the hero chat loop.
