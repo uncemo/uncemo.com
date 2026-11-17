@@ -7,9 +7,7 @@
   <meta name="description" content="How Uncemo handles your data: what we collect, what we access in Google, what we never do, and how to delete everything." />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts.css" />
   <link rel="stylesheet" href="styles.css" />
   <style>
     .doc { width: min(760px, 100% - 32px); margin: 0 auto; padding: 48px 0 80px; }
@@ -101,7 +99,7 @@
     <p>You may tell the assistant about your health, beliefs, relationships or other private matters, and it may save some of that as a memory under a heading like "health". We treat anything you choose to tell it as shared with your explicit consent, for the one purpose of helping you; it is used for nothing else, is never used to train AI models, and every memory can be deleted from the Memory tab at any time. Please don't share anything you would not want stored.</p>
 
     <h2>Phone calls</h2>
-    <p>Optional. You add your mobile number in Account and confirm it with a code we text you; then calls from that number reach your assistant. Twilio carries the call and turns your speech into text and the assistant's replies into speech, live, during the call. We do not record calls; what you said and what the assistant answered are kept as text in your chat, like any other message. Twilio keeps a record of each call and text (the numbers, time and length) under its own terms, as any phone company does. Call minutes are counted to apply a daily and weekly allowance. Remove the number in Account and calls stop at once.</p>
+    <p>Optional. You add your mobile number in Account and confirm it with a code we text you; then calls from that number reach your assistant. Caller ID can be faked, so you can also set a PIN in Account that the assistant asks for on the keypad before it talks to you; we store only a keyed hash of it. Twilio carries the call and turns your speech into text and the assistant's replies into speech, live, during the call. We do not record calls; what you said and what the assistant answered are kept as text in your chat, like any other message. Twilio keeps a record of each call and text (the numbers, time and length) under its own terms, as any phone company does. Call minutes are counted to apply a daily and weekly allowance. Remove the number in Account and calls stop at once.</p>
 
     <h2>How the AI is used, and automated decisions</h2>
     <p>Every reply is written by an AI model run by Anthropic (Claude). To write it, the model receives your message, the recent conversation, your name and "about you" note, your memories, your open to-dos, and whatever calendar, email or contact data the request needs. The model can also save a memory about you when you tell it something worth keeping; you see every memory in the Memory tab and can delete any of them.</p>
@@ -125,13 +123,13 @@
     <p>We never sell your data, never share it with advertisers, never show you ads, and never use your data to train AI models. We do not use analytics or tracking SDKs in the app.</p>
 
     <h2>The website</h2>
-    <p>uncemo.com is a static site hosted by GitHub Pages, which sees your IP address when you load a page, and its font is loaded from Google Fonts, which sees your IP address too. The site sets no cookies and has no analytics. The only thing it sends to us is the email address you type into the waitlist form. Your dark-mode choice is kept in your own browser.</p>
+    <p>uncemo.com is a static site hosted by GitHub Pages, which sees your IP address when you load a page. Everything on it, the font included, is served from the site itself: no request goes to Google or any other third party. The site sets no cookies and has no analytics. The only thing it sends to us is the email address you type into the waitlist form. Your dark-mode choice is kept in your own browser.</p>
 
     <h2>Transfers outside the UK</h2>
     <p>Our server and our providers are in the United States, so your data leaves the UK. We rely on the safeguards UK law allows for this: each provider is bound by data protection terms that include the UK Addendum to the EU Standard Contractual Clauses or the ICO's International Data Transfer Agreement, and where a provider is certified under the UK Extension to the EU-US Data Privacy Framework we rely on that too. Email <a href="mailto:privacy@uncemo.com">privacy@uncemo.com</a> if you want details of the safeguard for a particular provider.</p>
 
     <h2>Where your data lives</h2>
-    <p>Each account has its own separate database file on our server. There is no shared table of everyone's messages. Access tokens from Google and Microsoft are encrypted at rest. A backup of the databases is taken every night and kept for 7 days, then deleted.</p>
+    <p>Each account has its own separate database file on our server. There is no shared table of everyone's messages. Access tokens from Google and Microsoft are encrypted at rest. A backup of the databases is taken every night, encrypted with a key kept off the server, and kept for 7 days, then deleted. The server runs without administrator rights inside its container.</p>
 
     <h2>How long we keep it</h2>
     <ul>
